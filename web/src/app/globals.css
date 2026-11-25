@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-script: var(--font-great-vibes), cursive;
+  --color-paper: #f7f4ee;
+  --color-ink: #1c1a17;
+  --color-gold: #8c7340;
+  --color-muted: #5c564c;
+  --color-warning: #c62828;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
