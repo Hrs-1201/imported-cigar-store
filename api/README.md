@@ -53,3 +53,25 @@ pytest
 ```
 
 Override the test URL with `TEST_DATABASE_URL` if your Postgres user or port differs.
+
+## Catalog
+
+Public routes need no token. They return products only when `is_published` is true and `deleted_at` is null. Money is a string with two decimals.
+
+- `GET /categories`
+- `GET /categories/{slug}/products` — `q`, `origin`, `page`, `page_size`
+- `GET /products` — `q`, `origin`, `new=1`, `page`, `page_size`. The page is empty unless `q` or `new=1` is set. `origin` alone does not list the catalog.
+- `GET /products/featured` — published founder-pick cigars, `{ "items": [] }`, cap 12
+- `GET /products/new-arrivals` — same shape, newest first, cap 12
+- `GET /products/{slug}`
+- `GET /brands`
+- `GET /media/products/{filename}` — 404 until that published image file is on disk
+- `POST /contact` — saves a message. The admin inbox is later.
+
+## Demo catalog (dev only)
+
+`python -m app.scripts.seed_demo` loads the country brand lists: cigars from Cuba, the Dominican Republic, Nicaragua, and Honduras, and cigarettes from Russia, China, Japan, Ukraine, the United Kingdom, and Thailand. It also keeps one lighter, one cutter, one ashtray, and one unpublished cigar that the shop must not show. Prices and sizes are demo figures.
+
+Photos attach only when a file is already in `api/storage/products/`. The current files are the Macanudo Vintage Maduro cigar and the two Sobranie pack views.
+
+The command is idempotent. It removes the earlier fictional tobacco SKUs (`DEMO-CIG-001` through `DEMO-CIG-004`, `DEMO-CGT-001`, `DEMO-CGT-002`) if they are still present. It does not run on API startup. It refuses a database whose name ends in `_test`. Do not run it against production.

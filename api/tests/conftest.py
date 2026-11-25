@@ -54,7 +54,12 @@ def _migrate() -> None:
 def _clean_tables() -> None:
     db = SessionLocal()
     try:
-        db.execute(text("TRUNCATE TABLE users RESTART IDENTITY CASCADE"))
+        db.execute(
+            text(
+                "TRUNCATE TABLE contact_messages, products, refresh_tokens, users "
+                "RESTART IDENTITY CASCADE"
+            )
+        )
         db.commit()
     finally:
         db.close()

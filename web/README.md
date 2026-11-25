@@ -33,7 +33,7 @@ Open http://localhost:3000. Every route, including `/login`, `/register`, `/acco
 
 - Register lands on `/account`.
 - Login honors a safe relative `next` (`/login?next=/account`). Otherwise a customer goes to `/` and an admin goes to `/admin`.
-- `/` is a one-line placeholder. Signed out, it links to Login. Signed in, it shows the first name and a link to `/account`.
+- `/` is a short welcome. The full home page is a later phase. The store navbar, announcement bar, and footer wrap the public pages. Category, product, search, and contact pages read the API. The cart page says it arrives later. Login still lives in the announcement bar.
 - `/admin` calls `GET /auth/me`. A customer gets 200 with `role=customer` and then sees a refusal, with no admin navigation. An admin sees an empty shell and can log out.
 
 `docker compose up` can build this app as well. The image bakes `API_ORIGIN=http://api:8000` so the rewrite stays inside the compose network. The browser still uses `/api/v1` on port 3000.

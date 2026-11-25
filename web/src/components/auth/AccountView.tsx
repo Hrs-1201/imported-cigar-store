@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { ApiRequestError, apiFetch, logoutRequest } from "@/lib/api-client";
 import { getAccessToken } from "@/lib/auth";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { brand } from "@/lib/brand";
 import type { UserPublic } from "@/types/api";
 
 export function AccountView() {
@@ -42,9 +41,8 @@ export function AccountView() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-6">
-      <p className="font-script text-5xl text-gold">{brand.name}</p>
-      <h1 className="mt-2 font-serif text-3xl">Account</h1>
+    <main className="mx-auto w-full max-w-lg px-6 py-16">
+      <h1 className="font-serif text-3xl">Account</h1>
       {!profile ? (
         <p className="mt-8 text-muted">Loading…</p>
       ) : (

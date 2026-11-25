@@ -5,6 +5,8 @@ from sqlalchemy import engine_from_config, pool
 
 from app.core.config import get_settings
 from app.core.db import Base
+from app.models.catalog import Category, Product, ProductImage, ProductRating  # noqa: F401
+from app.models.contact import ContactMessage  # noqa: F401
 from app.models.user import RefreshToken, User  # noqa: F401
 
 config = context.config
