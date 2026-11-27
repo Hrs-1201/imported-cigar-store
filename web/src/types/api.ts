@@ -101,6 +101,10 @@ export type ProductCardList = {
   items: ProductCard[];
 };
 
+export type BrandList = {
+  items: string[];
+};
+
 export type Category = {
   id: string;
   slug: string;

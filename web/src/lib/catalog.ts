@@ -1,6 +1,6 @@
 import { cache } from "react";
 
-import type { ProductDetail, ProductPage } from "@/types/api";
+import type { BrandList, ProductCardList, ProductDetail, ProductPage } from "@/types/api";
 
 export type CatalogQuery = {
   origin?: string;
@@ -58,6 +58,18 @@ export async function loadCategoryProducts(
     page: query.page > 1 ? query.page : undefined,
   })}`;
   return catalogGet<ProductPage>(path);
+}
+
+export function loadBrands() {
+  return catalogGet<BrandList>("/brands");
+}
+
+export function loadFeatured() {
+  return catalogGet<ProductCardList>("/products/featured");
+}
+
+export function loadNewArrivals() {
+  return catalogGet<ProductCardList>("/products/new-arrivals");
 }
 
 export async function loadSearch(query: {
